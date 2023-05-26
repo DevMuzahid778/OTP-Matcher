@@ -20,7 +20,7 @@ document.getElementById("CalculatorButtons").addEventListener("click", function(
         if(Digit == "C"){
             PinSubmitField.value = ""
         }
-        else{
+        else if(Digit == "<"){
             const allDigits = PreviousDigit.split("");
             allDigits.pop();
             // console.log(allDigits) remove one by one digit for per click
@@ -37,4 +37,31 @@ document.getElementById("CalculatorButtons").addEventListener("click", function(
         const TotalPin = PreviousDigit + NextDigit;
         PinSubmitField.value = TotalPin;
     }
-})
+});
+
+document.getElementById("SubmitPin").addEventListener("click", function(){
+    const PinField = document.getElementById("PinField");
+    const PinSubmitField = document.getElementById("PinSubmit");
+
+    const NotVerified = document.getElementById("NotVerified");
+    const Verified = document.getElementById("Verified");
+
+    if(PinField.value == PinSubmitField.value && PinSubmitField.value != ""){
+        // console.log("Pin matched");
+        // const Verified = document.getElementById("Verified");
+        
+        Verified.style.display = "block";
+        // if pin mathced! then NotVerified alert hidden
+        NotVerified.style.display = "none";
+        
+    }
+    else{
+        // console.log("Pin not matched");
+        // const NotVerified = document.getElementById("NotVerified");
+        NotVerified.style.display = "block";
+        // if pin not mathced! then verified alert hidden
+        Verified.style.display = "none";
+    }
+    PinField.value = "";
+    PinSubmitField.value = "";
+});
